@@ -19,7 +19,7 @@ It uses pure SQL functions and does not rely on any external functionality.
 ## Setup
 
 1. **Initialize the schema versioning system:**  
-   Run the SQL statements in [`init.sql`](init.sql) to set up the required functions and tables.
+   Run the SQL statements in [`001_add_schema_versioning.sql`](sql/migrate/0.1/001_add_schema_versioning.sql) to set up the required functions and tables.
 
 2. **Check the current schema version:**  
    ```sql
