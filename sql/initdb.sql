@@ -1,3 +1,4 @@
+-- source: migrate/0.1/001_add_schema_versioning.sql
 -- get_schema_type()
 -- returns the type of the schema
 -- This is used for identifying the schema type in a multi-schema environment.
@@ -69,4 +70,21 @@ END;
 $$;
 
 -- Set the version number:
-CALL set_schema_version(0,1,2);
+CALL set_schema_version(0,1,1);
+
+
+-- source: migrate/0.1/002_add_first_tables.sql
+-- Make some sql changes
+
+CREATE TABLE users (
+     id SERIAL PRIMARY KEY,
+     name VARCHAR(100) NOT NULL,
+     email VARCHAR(100) UNIQUE NOT NULL,
+     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+ );
+
+-- Update the version number
+set_schema_version(0,1,2);
+
+
+
