@@ -33,12 +33,12 @@ Changes to schemas are built up as a sequence of changes that can be applied, an
 The changes should be decoupled from the code changes - so that old code can run with the the new schema changes, and 
 then updated code can be rolled out, before cleaning up unused columns.
 
-The init.sql should be kept up to date as a current snapshot of the full DB for easy loading in new environments.
-The migrate folder should be a complete record of changes.
+The [`initdb.sql`](sql/initdb.sql) should be kept up to date as a current snapshot of the full DB for easy loading in new environments.
+The *migrate* folder should be a complete record of changes.
 
-The init.sql file can easily be updated with the following script (run from the sql directory)
+The initdb.sql file can easily be updated with the following script (run from the sql directory)
 ```bash
-find migrate -name "*.sql" -type f | sort -V | while read file; do echo "=== $file ===";  cat "$file"; done > init.sql
+find migrate -name "*.sql" -type f | sort -V | while read file; do echo "-- source: $file";  cat "$file"; echo "\n"; done > initdb.sql
 ```
 
 Each of the sql scripts in the migrate folder can be run manually or it can be scripted to run them in a sequence.
